@@ -4,16 +4,19 @@ angular.module('flapperNews', [])
 function($scope){
   $scope.test = 'Hello world!';
 
-  $scope.posts = [
-    {title: '1', upvotes: 5},
-    {title: '2', upvotes: 2},
-    {title: '3', upvotes: 15},
-    {title: '4', upvotes: 9},
-    {title: '5', upvotes: 4}
-  ];
+  $scope.posts = [];
 
   $scope.addPost = function(){
-    $scope.posts.push({title: $scope.title, upvotes: 0});
+    if(!$scope.title || $scope.title === '') { return; }
+    $scope.posts.push({
+      title: $scope.title,
+      link: $scope.link,
+      upvotes: 0
+  });
     $scope.title = '';
+    $scope.link = '';
+  };
+  $scope.incrementUpvotes = function(post) {
+    post.upvotes += 1;
   };
 }]);

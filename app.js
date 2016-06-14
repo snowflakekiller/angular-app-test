@@ -1,7 +1,17 @@
 angular.module('flapperNews', [])
+
+.factory('posts', [function(){
+  var o = {
+    posts: []
+  };
+  return o;
+}])
+
 .controller('MainCtrl', [
 '$scope',
+'posts'
 function($scope){
+  $scope.posts = posts.posts;
   $scope.test = 'Hello world!';
 
   $scope.posts = [];
@@ -19,4 +29,5 @@ function($scope){
   $scope.incrementUpvotes = function(post) {
     post.upvotes += 1;
   };
+
 }]);
